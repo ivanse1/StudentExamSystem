@@ -1,7 +1,7 @@
-
 package com.example;
 
 import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "exams")
@@ -17,6 +17,17 @@ public class Exam {
 
     @Column(name = "grade", nullable = false)
     private int grade; // Grades will be on a scale of 1-5
+
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @PrePersist
+    protected void onCreate() {
+        if (createdDate == null) {
+            createdDate = new Date();
+        }
+    }
 
     public Exam() {}
 
@@ -44,5 +55,10 @@ public class Exam {
     public void setGrade(int grade) {
         this.grade = grade;
     }
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 }
-

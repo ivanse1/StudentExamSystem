@@ -24,7 +24,7 @@ public class Main {
         List<Student> students = studentDAO.getAllStudents();
         for (Student student : students) {
             System.out.println("Student: " + student.getName());
-            student.getExams().forEach(exam -> System.out.println(" - Exam Grade: " + exam.getGrade()));
+            student.getExams().forEach(exam -> System.out.println(" - Exam Grade: " + exam.getGrade() + " saving date " + exam.getCreatedDate()));
         }
     }
 }
